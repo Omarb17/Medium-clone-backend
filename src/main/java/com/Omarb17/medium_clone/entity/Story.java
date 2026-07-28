@@ -40,7 +40,7 @@ public class Story {
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 
-    @ManyToMany(mappedBy = "story")
+    @ManyToMany
     @JoinTable(
             name = "story_topics",
             joinColumns = @JoinColumn(name = "story_id"),
