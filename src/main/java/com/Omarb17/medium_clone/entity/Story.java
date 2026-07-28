@@ -1,0 +1,57 @@
+package com.Omarb17.medium_clone.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Story")
+public class Story {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    private String text;
+
+    private LocalDateTime createdAt;
+
+    private int readingTime;
+
+    private int likeCount;
+
+    @PrePersist
+    public void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private User user;
+
+    @ManyToMany(mappedBy = "story")
+    @JoinTable(
+            name = "story_topics",
+            joinColumns = @JoinColumn(name = "story_id"),
+            inverseJoinColumns = @JoinColumn(name = "topic_id")
+    )
+    private Set<Topic> topics;
+
+    @ManyToOne
+    @JoinColumn(name="publication_id")
+    private Publication publication;
+
+    @OneToMany(mappedBy = "story")
+    private Set<Comment> comments;
+}
