@@ -3,6 +3,7 @@ package com.Omarb17.medium_clone.service;
 import com.Omarb17.medium_clone.entity.Topic;
 import com.Omarb17.medium_clone.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,10 @@ public class TopicService {
         return topicRepository.findAll();
     }
 
-    public Optional<Topic> getTopicById(Long id) {
-        return topicRepository.findById(id);
+    public ResponseEntity<Topic> getTopicById(Long id) {
+        return topicRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     public Topic addNewTopic(Topic topic) {
