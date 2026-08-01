@@ -1,9 +1,7 @@
 package com.Omarb17.medium_clone.service;
 
 import com.Omarb17.medium_clone.entity.Story;
-import com.Omarb17.medium_clone.entity.Topic;
 import com.Omarb17.medium_clone.repository.StoryRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +30,14 @@ public class StoryService {
         return storyRepository.save(story);
     }
 
-    public void deleteStory(Long id) {
-        storyRepository.deleteById(id);
+    public boolean deleteStory(Long id) {
+        return storyRepository.findById(id)
+                        .map(task -> {
+                            storyRepository.deleteById(id);
+                            return true;
+                        })
+                .orElse(false);
+
     }
 
     public Optional<Story> updateStory(Long id, String title, String text) {
