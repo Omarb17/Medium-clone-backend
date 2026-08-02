@@ -23,10 +23,8 @@ public class TopicService {
         return topicRepository.findAll();
     }
 
-    public ResponseEntity<Topic> getTopicById(Long id) {
-        return topicRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public Optional<Topic> getTopicById(Long id) {
+        return topicRepository.findById(id);
     }
 
     public Topic addNewTopic(Topic topic) {

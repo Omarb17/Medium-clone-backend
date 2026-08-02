@@ -36,7 +36,9 @@ public class TopicController {
     )
     @GetMapping("/{id}")
     public ResponseEntity<Topic> getTopicById (@PathVariable Long id) {
-        return topicService.getTopicById(id);
+        return topicService.getTopicById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Add a new topic")
