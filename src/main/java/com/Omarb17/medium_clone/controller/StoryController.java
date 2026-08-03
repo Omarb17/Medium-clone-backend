@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/stories")
@@ -52,6 +51,4 @@ public class StoryController {
         return storyService.deleteStory(id) ?
                 ResponseEntity.ok().build() :
                 ResponseEntity.notFound().build();}
-
-
 }

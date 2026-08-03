@@ -20,7 +20,14 @@ public class UserService {
 
     public User addNewUser(User user) {return userRepository.save(user);}
 
-    public void deleteUser(Long id) {userRepository.deleteById(id);}
+    public boolean deleteUser(Long id) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    userRepository.deleteById(id);
+                    return true;
+                })
+                .orElse(false);
+    }
 
     public Optional<User> updateUser(Long id, String name, String email) {
         return userRepository.findById(id).map( user -> {
