@@ -1,6 +1,8 @@
 package com.Omarb17.medium_clone.controller;
+import com.Omarb17.medium_clone.entity.Comment;
 import com.Omarb17.medium_clone.entity.Story;
 
+import com.Omarb17.medium_clone.service.CommentService;
 import com.Omarb17.medium_clone.service.StoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,12 @@ public class StoryController {
 
     private final StoryService storyService;
 
+    private final CommentService commentService;
+
     @Autowired
-    public StoryController(StoryService storyService) {
+    public StoryController(StoryService storyService, CommentService commentService) {
         this.storyService = storyService;
+        this.commentService = commentService;
     }
 
     @Operation(summary = "Get all stories")
@@ -51,4 +56,13 @@ public class StoryController {
         return storyService.deleteStory(id) ?
                 ResponseEntity.ok().build() :
                 ResponseEntity.notFound().build();}
+
+    @Operation(summary = "Get comments by story id")
+    @GetMapping("/{storyId}/comments")
+    public List<Comment> getCommentsByStoryId (@PathVariable Long storyId) {
+        return commentService.getAllCommentsByStoryId(storyId);
+    }
+
 }
+
+
