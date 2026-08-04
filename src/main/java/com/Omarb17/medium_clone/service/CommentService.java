@@ -25,7 +25,13 @@ public class CommentService {
 
     public Comment addNewComment(Comment comment) { return commentRepository.save(comment);}
 
-    public void deleteComment(Long id) {commentRepository.deleteById(id);}
+    public boolean deleteComment(Long id) {
+        return commentRepository.findById(id)
+            .map(comment -> {
+                commentRepository.deleteById(id);
+                return true;
+            })
+            .orElse(false);}
 
     public Optional<Comment> updateComment(Long id, String content) {
         return commentRepository.findById(id).map(comment -> {

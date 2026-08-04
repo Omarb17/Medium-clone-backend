@@ -32,7 +32,7 @@ public class StoryService {
 
     public boolean deleteStory(Long id) {
         return storyRepository.findById(id)
-                        .map(task -> {
+                        .map(story -> {
                             storyRepository.deleteById(id);
                             return true;
                         })
