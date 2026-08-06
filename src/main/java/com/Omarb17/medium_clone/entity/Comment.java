@@ -21,10 +21,10 @@ public class Comment {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "story_id")
+    @JoinColumn(name = "story_id", nullable = false)
     private Story story;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }

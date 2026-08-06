@@ -42,4 +42,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Story> stories;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments;
+
 }
