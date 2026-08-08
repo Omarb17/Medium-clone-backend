@@ -5,6 +5,7 @@ import com.Omarb17.medium_clone.entity.Story;
 import com.Omarb17.medium_clone.service.CommentService;
 import com.Omarb17.medium_clone.service.StoryService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +39,14 @@ public class StoryController {
 
     @Operation(summary = "Add a new story")
     @PostMapping
-    public ResponseEntity<Story> addNewStory(@RequestBody Story story) {
+    public ResponseEntity<Story> addNewStory(@Valid @RequestBody Story story) {
         Story savedStory = storyService.addNewStory(story);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStory);
     }
 
     @Operation(summary = "Edit Story")
     @PutMapping("/{id}")
-    public ResponseEntity<Story> editStory (@PathVariable Long id, @RequestBody Story story)
+    public ResponseEntity<Story> editStory (@PathVariable Long id,@Valid @RequestBody Story story)
     {return storyService.updateStory(id, story.getTitle(), story.getText())
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());}

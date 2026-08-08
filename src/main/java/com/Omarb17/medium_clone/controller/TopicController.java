@@ -3,6 +3,7 @@ package com.Omarb17.medium_clone.controller;
 import com.Omarb17.medium_clone.entity.Topic;
 import com.Omarb17.medium_clone.service.TopicService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class TopicController {
 
     @Operation(summary = "Add a new topic")
     @PostMapping
-    public ResponseEntity<Topic> addNewTopic(@RequestBody Topic topic) {
+    public ResponseEntity<Topic> addNewTopic(@Valid @RequestBody Topic topic) {
        Topic savedTopic = topicService.addNewTopic(topic);
        return ResponseEntity.status(HttpStatus.CREATED).body(savedTopic);
     }
