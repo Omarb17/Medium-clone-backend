@@ -1,10 +1,8 @@
 package com.Omarb17.medium_clone.controller;
-
 import com.Omarb17.medium_clone.entity.Publication;
-import com.Omarb17.medium_clone.entity.Topic;
 import com.Omarb17.medium_clone.service.PublicationService;
-import com.Omarb17.medium_clone.service.TopicService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +43,7 @@ public class PublicationController {
 
     @Operation(summary = "Add a new publication")
     @PostMapping
-    public ResponseEntity<Publication> addNewPublication(@RequestBody Publication publication) {
+    public ResponseEntity<Publication> addNewPublication(@Valid @RequestBody Publication publication) {
         Publication savedPublication = publicationService.addNewPublication(publication);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPublication);
     }
