@@ -2,6 +2,7 @@ package com.Omarb17.medium_clone.controller;
 import com.Omarb17.medium_clone.entity.Comment;
 import com.Omarb17.medium_clone.entity.Story;
 
+import com.Omarb17.medium_clone.entity.User;
 import com.Omarb17.medium_clone.service.CommentService;
 import com.Omarb17.medium_clone.service.StoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,6 +63,14 @@ public class StoryController {
     @GetMapping("/{storyId}/comments")
     public List<Comment> getCommentsByStoryId (@PathVariable Long storyId) {
         return commentService.getAllCommentsByStoryId(storyId);
+    }
+
+    @Operation(summary = "Get user by story ID")
+    @GetMapping("/{storyId}/user")
+    public ResponseEntity<User> getUserByStoryId(@PathVariable Long storyId) {
+        return storyService.getUserByStoryId(storyId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
