@@ -1,6 +1,7 @@
 package com.Omarb17.medium_clone.service;
 
 import com.Omarb17.medium_clone.entity.Story;
+import com.Omarb17.medium_clone.entity.User;
 import com.Omarb17.medium_clone.repository.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,11 @@ public class StoryService {
            story.setText(text);
            return storyRepository.save(story);
        });
+    }
+
+    public Optional<User> getUserByStoryId(Long storyId) {
+        return storyRepository.findById(storyId)
+                .map(Story::getUser);
     }
 
 
