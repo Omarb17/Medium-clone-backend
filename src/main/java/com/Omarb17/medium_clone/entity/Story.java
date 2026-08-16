@@ -30,16 +30,16 @@ public class Story {
     @NotBlank(message = "Text is required")
     private String text;
 
-    private LocalDateTime createdAt;
+//    private LocalDateTime createdAt;
 
     private int readingTime;
 
     private int likeCount;
 
-    @PrePersist
-    public void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
+//    @PrePersist
+//    public void onCreate() {
+//        createdAt = LocalDateTime.now();
+//    }
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
