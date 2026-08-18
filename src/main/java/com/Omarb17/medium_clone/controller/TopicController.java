@@ -1,6 +1,6 @@
 package com.Omarb17.medium_clone.controller;
 
-import com.Omarb17.medium_clone.entity.Topic;
+import com.Omarb17.medium_clone.model.entity.Topic;
 import com.Omarb17.medium_clone.service.TopicService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

@@ -1,5 +1,5 @@
 package com.Omarb17.medium_clone.controller;
-import com.Omarb17.medium_clone.entity.Publication;
+import com.Omarb17.medium_clone.model.entity.Publication;
 import com.Omarb17.medium_clone.service.PublicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

@@ -1,7 +1,6 @@
 package com.Omarb17.medium_clone.service;
 
-import com.Omarb17.medium_clone.entity.Story;
-import com.Omarb17.medium_clone.entity.User;
+import com.Omarb17.medium_clone.model.entity.User;
 import com.Omarb17.medium_clone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

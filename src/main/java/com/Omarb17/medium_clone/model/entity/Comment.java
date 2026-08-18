@@ -1,4 +1,4 @@
-package com.Omarb17.medium_clone.entity;
+package com.Omarb17.medium_clone.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

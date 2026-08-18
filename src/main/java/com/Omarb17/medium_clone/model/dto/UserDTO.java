@@ -1,6 +1,9 @@
-package com.Omarb17.medium_clone.entity;
+package com.Omarb17.medium_clone.model.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,17 +12,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.Set;
-
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Users")
-public class User {
-
+public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,16 +30,4 @@ public class User {
     @Email(message = "Invalid email address")
     @NotBlank(message = "Email is required")
     private String email;
-
-    @Column(nullable = false)
-    @NotBlank(message = "Password is required")
-    @Size(min = 8, message = "Password must be at leats 8 characters")
-    private String password;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Story> stories;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Comment> comments;
-
 }
