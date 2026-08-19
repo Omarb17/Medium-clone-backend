@@ -1,8 +1,8 @@
 package com.Omarb17.medium_clone.controller;
-import com.Omarb17.medium_clone.entity.Comment;
-import com.Omarb17.medium_clone.entity.Story;
+import com.Omarb17.medium_clone.model.entity.Comment;
+import com.Omarb17.medium_clone.model.entity.Story;
 
-import com.Omarb17.medium_clone.entity.User;
+import com.Omarb17.medium_clone.model.entity.User;
 import com.Omarb17.medium_clone.service.CommentService;
 import com.Omarb17.medium_clone.service.StoryService;
 import io.swagger.v3.oas.annotations.Operation;

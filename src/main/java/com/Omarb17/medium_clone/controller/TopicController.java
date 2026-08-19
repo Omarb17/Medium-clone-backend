@@ -1,6 +1,6 @@
 package com.Omarb17.medium_clone.controller;
 
-import com.Omarb17.medium_clone.entity.Topic;
+import com.Omarb17.medium_clone.model.entity.Topic;
 import com.Omarb17.medium_clone.service.TopicService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -23,18 +23,13 @@ public class TopicController {
     }
 
 
-    @Operation(
-            summary = "Get all topics",
-            description = "Retrieves a list of all topics"
-                )
+    @Operation(summary = "Get all topics", description = "Retrieves a list of all topics")
     @GetMapping
     public List<Topic> getTopicsList() {
         return topicService.getAllTopics();
     }
 
-    @Operation(
-            summary = "Get topic by id"
-    )
+    @Operation(summary = "Get topic by id")
     @GetMapping("/{id}")
     public ResponseEntity<Topic> getTopicById (@PathVariable Long id) {
         return topicService.getTopicById(id)

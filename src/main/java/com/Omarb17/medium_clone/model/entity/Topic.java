@@ -1,4 +1,4 @@
-package com.Omarb17.medium_clone.entity;
+package com.Omarb17.medium_clone.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -15,17 +15,17 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Publication")
-public class Publication {
+@Table(name = "Topic")
+public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Publication name is required")
-    @Size(min = 2, max = 20, message = "publication name must be between 2 and 20 characters")
-    private String name;
+    @NotBlank(message = "topic is required")
+    @Size(min = 2, max = 20, message = "Topic must be between 2 and 20 characters")
+    private String topic;
 
-    @OneToMany(mappedBy = "publication")
+    @ManyToMany(mappedBy = "topics")
     private Set<Story> stories;
 }

@@ -1,4 +1,4 @@
-package com.Omarb17.medium_clone.entity;
+package com.Omarb17.medium_clone.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
