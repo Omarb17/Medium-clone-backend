@@ -34,10 +34,9 @@ public class UserController {
     @Operation(summary = "Get user by id")
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable Long id) {
-       return userService.getUserById(id)
-               .map(userMapper::toResponseDto)
-               .map(ResponseEntity::ok)
-               .orElse(ResponseEntity.notFound().build());
+      User user = userService.getUserById(id);
+
+      return ResponseEntity.ok(userMapper.toResponseDto(user));
     }
 
 
