@@ -1,5 +1,6 @@
 package com.Omarb17.medium_clone.service;
 
+import com.Omarb17.medium_clone.exception.UserNotFoundException;
 import com.Omarb17.medium_clone.mapper.UserMapper;
 import com.Omarb17.medium_clone.model.dto.request.UserRequestDto;
 import com.Omarb17.medium_clone.model.entity.User;
@@ -21,7 +22,11 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public Optional<User> getUserById(Long id) {return userRepository.findById(id);}
+    public User getUserById(Long id) {return userRepository.findById(id)
+            .orElseThrow(() -> new UserNotFoundException(
+                    "User with id " + id + " not found"
+            ));
+    }
 
     public User addNewUser(UserRequestDto userRequestDto) {
         User user = userMapper.toEntity(userRequestDto);
