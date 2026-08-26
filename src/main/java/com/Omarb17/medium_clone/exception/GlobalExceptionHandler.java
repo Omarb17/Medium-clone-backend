@@ -1,5 +1,6 @@
 package com.Omarb17.medium_clone.exception;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +71,28 @@ public class GlobalExceptionHandler extends RuntimeException {
 
         return problemDetail;
      }
+
+    // since only the email have a unique validation this exception handling works
+    // after adding other unique validations you have to give a specific detail and a specific exception handling for each one
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ProblemDetail handleDuplicateEmailException (DataIntegrityViolationException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.CONFLICT);
+
+        problemDetail.setTitle("Duplication Error");
+
+        problemDetail.setDetail("An Account With This Email Already Exists");
+
+
+        problemDetail.setInstance(
+                ServletUriComponentsBuilder
+                        .fromCurrentRequestUri()
+                        .build()
+                        .toUri()
+        );
+        problemDetail.setType(URI.create("/errors/duplicate-email-error"));
+
+        return problemDetail;
+    }
 
 
     @ExceptionHandler(Exception.class)
