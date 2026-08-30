@@ -23,8 +23,12 @@ public class Story {
     private Long id;
 
     @NotBlank(message = "Title is required")
-    @Size(min = 2, max = 70, message = "Title must be between 2 and 70 characters")
+    @Size(min = 2, max = 100, message = "Title must be between 2 and 100 characters")
     private String title;
+
+    @NotBlank(message = "SubTitle is required")
+    @Size(min = 2, max = 140, message = "SubTitle must be between 2 and 140 characters")
+    private String subTitile;
 
     @NotBlank(message = "Text is required")
     private String text;
