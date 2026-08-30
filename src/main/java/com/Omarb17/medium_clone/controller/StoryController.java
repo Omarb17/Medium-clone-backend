@@ -1,4 +1,6 @@
 package com.Omarb17.medium_clone.controller;
+import com.Omarb17.medium_clone.mapper.StoryMapper;
+import com.Omarb17.medium_clone.model.dto.response.StoryResponseDto;
 import com.Omarb17.medium_clone.model.entity.Comment;
 import com.Omarb17.medium_clone.model.entity.Story;
 
@@ -22,6 +24,7 @@ public class StoryController {
 
     private final CommentService commentService;
 
+
     @Autowired
     public StoryController(StoryService storyService, CommentService commentService) {
         this.storyService = storyService;
@@ -30,7 +33,9 @@ public class StoryController {
 
     @Operation(summary = "Get all stories")
     @GetMapping
-    public List<Story> getStoriesList() { return storyService.getAllStories();}
+    public List<StoryResponseDto> getStoriesList() {
+       return storyService.getAllStories();
+    }
 
     @Operation(summary = "Get story by id")
     @GetMapping("/{id}")
