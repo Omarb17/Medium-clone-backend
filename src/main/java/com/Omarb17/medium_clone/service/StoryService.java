@@ -1,5 +1,7 @@
 package com.Omarb17.medium_clone.service;
 
+import com.Omarb17.medium_clone.mapper.StoryMapper;
+import com.Omarb17.medium_clone.model.dto.response.StoryResponseDto;
 import com.Omarb17.medium_clone.model.entity.Story;
 import com.Omarb17.medium_clone.model.entity.User;
 import com.Omarb17.medium_clone.repository.StoryRepository;
@@ -14,13 +16,19 @@ public class StoryService {
 
     private final StoryRepository storyRepository;
 
+    private final StoryMapper storyMapper;
+
     @Autowired
-    public StoryService(StoryRepository storyRepository) {
+    public StoryService(StoryRepository storyRepository, StoryMapper storyMapper) {
         this.storyRepository = storyRepository;
+        this.storyMapper = storyMapper;
     }
 
-    public List<Story> getAllStories() {
-        return storyRepository.findAll();
+    public List<StoryResponseDto> getAllStories() {
+        return storyRepository.findAll()
+                .stream()
+                .map(storyMapper::toResponseDto)
+                .toList();
     }
 
     public Optional<Story> getStoryById(Long id) {
