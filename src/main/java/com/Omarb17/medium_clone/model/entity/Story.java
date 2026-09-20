@@ -28,7 +28,7 @@ public class Story {
 
     @NotBlank(message = "SubTitle is required")
     @Size(min = 2, max = 140, message = "SubTitle must be between 2 and 140 characters")
-    private String subTitile;
+    private String subTitle;
 
     @NotBlank(message = "Text is required")
     private String text;

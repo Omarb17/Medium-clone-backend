@@ -14,6 +14,7 @@ public class StoryMapper {
         return new StoryResponseDto(
                 story.getId(),
                 story.getTitle(),
+                story.getSubTitle(),
                 story.getText(),
                 story.getUser().getId()
         );
