@@ -16,7 +16,9 @@ public class StoryMapper {
                 story.getTitle(),
                 story.getSubTitle(),
                 story.getText(),
-                story.getUser().getId()
+                story.getUser().getId(),
+                story.getUser().getName()
+
         );
     }
 }

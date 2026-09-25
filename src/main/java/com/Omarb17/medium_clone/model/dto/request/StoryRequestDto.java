@@ -1,4 +1,4 @@
-package com.Omarb17.medium_clone.model.dto.response;
+package com.Omarb17.medium_clone.model.dto.request;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,9 +10,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class StoryResponseDto {
+public class StoryRequestDto {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Title is required")
@@ -31,6 +33,4 @@ public class StoryResponseDto {
 //    private int likeCount;
 
     private Long userId;
-
-    private String userName;
 }
