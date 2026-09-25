@@ -1,5 +1,7 @@
 package com.Omarb17.medium_clone.controller;
 import com.Omarb17.medium_clone.mapper.StoryMapper;
+import com.Omarb17.medium_clone.model.dto.request.StoryRequestDto;
+import com.Omarb17.medium_clone.model.dto.response.CommentResponseDto;
 import com.Omarb17.medium_clone.model.dto.response.StoryResponseDto;
 import com.Omarb17.medium_clone.model.entity.Comment;
 import com.Omarb17.medium_clone.model.entity.Story;
@@ -39,14 +41,14 @@ public class StoryController {
 
     @Operation(summary = "Get story by id")
     @GetMapping("/{id}")
-    public ResponseEntity<Story> getStoryById (@PathVariable Long id) { return storyService.getStoryById(id)
+    public ResponseEntity<StoryResponseDto> getStoryById (@PathVariable Long id) { return storyService.getStoryById(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());}
 
     @Operation(summary = "Add a new story")
     @PostMapping
-    public ResponseEntity<Story> addNewStory(@Valid @RequestBody Story story) {
-        Story savedStory = storyService.addNewStory(story);
+    public ResponseEntity<StoryResponseDto> addNewStory(@Valid @RequestBody StoryRequestDto storyRequestDto ) {
+        StoryResponseDto  savedStory = storyService.addNewStory(storyRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStory);
     }
 
@@ -66,7 +68,7 @@ public class StoryController {
 
     @Operation(summary = "Get comments by story id")
     @GetMapping("/{storyId}/comments")
-    public List<Comment> getCommentsByStoryId (@PathVariable Long storyId) {
+    public List<CommentResponseDto> getCommentsByStoryId (@PathVariable Long storyId) {
         return commentService.getAllCommentsByStoryId(storyId);
     }
 

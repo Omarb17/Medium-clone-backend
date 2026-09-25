@@ -13,8 +13,6 @@ import lombok.Getter;
 public class StoryResponseDto {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Title is required")
@@ -33,4 +31,6 @@ public class StoryResponseDto {
 //    private int likeCount;
 
     private Long userId;
+
+    private String userName;
 }
